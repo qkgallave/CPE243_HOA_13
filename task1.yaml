@@ -13,7 +13,7 @@
       become: true
       ufw:
         rule: deny
-        from: 192.168.56.106
+        from: 192.168.56.108
 
     - name: Restart UFW to implement rule
       service:
