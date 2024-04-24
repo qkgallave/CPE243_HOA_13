@@ -1,0 +1,22 @@
+---
+- name: Block IP address
+  hosts: checkpoint
+#  become: true
+  tasks:
+
+    - name: Ensure UFW is installed and running
+      apt:
+        name: ufw
+        state: present
+
+    - name: Create new firewall rule
+      become: true
+      ufw:
+        rule: deny
+        from: 192.168.56.106
+
+    - name: Restart UFW to implement rule
+      service:
+        name: ufw
+        state: restarted
+        enabled: yes
